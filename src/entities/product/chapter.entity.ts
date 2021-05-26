@@ -5,11 +5,14 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     OneToOne,
-    OneToMany
+    OneToMany,
+    ManyToOne,
+    JoinColumn
 } from "typeorm";
 
 import { Movie } from './movie.entity'
 import { Remark } from './remark.entity'
+import { Season } from './season.entity'
 
 @Entity('chapter',{schema: 'product'})
 export class Chapter {
@@ -40,4 +43,5 @@ export class Chapter {
         remark => remark.chapter,
     )
     remark: Remark[]
+
 }

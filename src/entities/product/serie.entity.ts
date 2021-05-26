@@ -7,14 +7,16 @@ import {
     ManyToMany, 
     JoinTable,
     OneToOne,
-    JoinColumn
+    JoinColumn,
+    OneToMany
 } from "typeorm";
 
 import { Category } from './category.entity';
 import { Chapter } from './chapter.entity';
+import { Season } from './season.entity'
 
-@Entity('movie',{schema: 'product'})
-export class Movie {
+@Entity('serie',{schema: 'product'})
+export class Serie {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -41,11 +43,11 @@ export class Movie {
     @JoinTable()
     categories: Category[];
 
-    @OneToOne(
-        () => Chapter,
-        chapter => chapter.movie
+    @OneToMany(
+        () => Season,
+        season => season.serie,
     )
-    @JoinColumn({ name: 'fk_chapter' })
-    chapter: Chapter
+    season: Season[]
+
 
 }
